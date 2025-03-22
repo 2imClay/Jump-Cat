@@ -143,3 +143,11 @@ body { text-align: center; font-family: Arial, sans-serif; margin-top: 100px; }
 #skin-list img.selected {
     border: 2px solid yellow;
 }
+.btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
