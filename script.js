@@ -74,6 +74,9 @@ setInterval(() => {
             document.getElementById("score").innerText = score;
             scored = true;
 
+            checkUnlockSkin50();
+            checkUnlockSkin70();
+
             if (score % 10 === 0) {
                 obstacleSpeed = obstacleSpeed - 0.1;
 
@@ -107,3 +110,66 @@ document.addEventListener("DOMContentLoaded", () => {
         snowContainer.appendChild(snowflake);
     }
 });
+let unlockedSkins = ["images/cat2-removebg-preview.png"]; // Skin mặc định
+let currentSkin = "images/cat2-removebg-preview.png"; // Skin hiện tại
+const skins = [
+    "images/cat2-removebg-preview.png",
+    "images/bi-removebg-preview.png", 
+    "images/cá-removebg-preview.png", 
+];
+
+// Kiểm tra nếu có skin đã mở khóa trước đó
+if (localStorage.getItem("unlockedSkins")) {
+    unlockedSkins = JSON.parse(localStorage.getItem("unlockedSkins"));
+}
+
+// Hiển thị cửa hàng skin
+document.getElementById("open-skin-shop").addEventListener("click", () => {
+    let skinList = document.getElementById("skin-list");
+    skinList.innerHTML = ""; // Xóa danh sách cũ
+
+    unlockedSkins.forEach((skin, index) => {
+        let img = document.createElement("img");
+        img.src = skin;
+        img.dataset.index = index;
+        if (skin === currentSkin) img.classList.add("selected");
+
+        img.addEventListener("click", function () {
+            document.querySelectorAll("#skin-list img").forEach(img => img.classList.remove("selected"));
+            img.classList.add("selected");
+            currentSkin = skin;
+        });
+
+        skinList.appendChild(img);
+    });
+
+    document.getElementById("skin-shop").classList.remove("hidden");
+});
+
+// Xác nhận chọn skin
+document.getElementById("confirm-skin").addEventListener("click", () => {
+    document.querySelector(".player").style.backgroundImage = `url('${currentSkin}')`;
+    localStorage.setItem("currentSkin", currentSkin);
+    document.getElementById("skin-shop").classList.add("hidden");
+});
+
+// Đóng cửa hàng
+document.getElementById("close-skin-shop").addEventListener("click", () => {
+    document.getElementById("skin-shop").classList.add("hidden");
+});
+
+// Mở khóa skin khi đạt 100 điểm
+function checkUnlockSkin50() {
+    if (highscore >= 50 && !unlockedSkins.includes(skins[1])) {
+        unlockedSkins.push(skins[1]); // Mở khóa skin 2
+        localStorage.setItem("unlockedSkins", JSON.stringify(unlockedSkins));
+        alert("Chúc mừng! Bạn đã mở khóa một bộ trang phục mới!");
+    }
+}
+function checkUnlockSkin70() {
+    if (highscore >= 70 && !unlockedSkins.includes(skins[2])) {
+        unlockedSkins.push(skins[2]); // Mở khóa skin 2
+        localStorage.setItem("unlockedSkins", JSON.stringify(unlockedSkins));
+        alert("Chúc mừng! Bạn đã mở khóa một bộ trang phục mới!");
+    }
+}

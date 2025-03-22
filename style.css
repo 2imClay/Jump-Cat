@@ -27,12 +27,16 @@ body { text-align: center; font-family: Arial, sans-serif; margin-top: 100px; }
     animation: snowfall linear infinite;
 }
 .player {
-    width: 70px;
-    height: 50px;
-    background: url('images/cat2-removebg-preview.png') no-repeat center/cover;
+    width: 60px;
+    height: 60px;
+    background-image: url('images/cat2-removebg-preview.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     position: absolute;
     bottom: 0;
     left: 50px;
+    overflow: hidden;
 }
 .obstacle {
     width: 35px;
@@ -77,8 +81,8 @@ body { text-align: center; font-family: Arial, sans-serif; margin-top: 100px; }
         height: 150px;
     }
     #player {
-        width: 60px;
-        height: 40px;
+        width: 75px;
+        height: 70px;
     }
     #obstacle {
         width: 40px;
@@ -111,4 +115,31 @@ body { text-align: center; font-family: Arial, sans-serif; margin-top: 100px; }
     border: none;
     font-size: 16px;
     cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+#skin-shop {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(62, 62, 62, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+#skin-list img {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+#skin-list img.selected {
+    border: 2px solid yellow;
 }
