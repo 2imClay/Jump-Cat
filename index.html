@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game JumpCat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Nhảy để tránh chướng ngại vật!</h1>
+    <h2>Điểm : <span id="score">0</span> | Kỷ lục <span id="highscore">0</span></h2>
+    <div class="game-container">
+        <div class="snow"></div>
+        <div class="player" id="player"></div>
+        <div class="obstacle" id="obstacle"></div>
+    </div>
+    <div id="game-over">
+        <p>Game Over!</p>
+        <button onclick="restartGame()">Chơi lại</button>
+    </div>
+    
+    <button id="jump-button">Nhảy</button>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

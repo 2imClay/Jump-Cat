@@ -1,0 +1,114 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { text-align: center; font-family: Arial, sans-serif; margin-top: 100px; }
+.game-container {
+    width: 600px;
+    height: 200px;
+    border: 2px solid black;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+}
+.snow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+@keyframes snowfall {
+    from { transform: translateY(-100vh); }
+    to { transform: translateY(100vh); }
+}
+.snow span {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: snowfall linear infinite;
+}
+.player {
+    width: 70px;
+    height: 50px;
+    background: url('images/cat2-removebg-preview.png') no-repeat center/cover;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+.obstacle {
+    width: 35px;
+    height: 50px;
+    background: url('images/tree-removebg-preview.png') no-repeat center/cover;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    animation: move 2s linear infinite;
+}
+@keyframes move {
+    from { right: 0; }
+    to { right: 600px; }
+}
+.jump {
+    animation: jump 0.5s ease-out;
+}
+@keyframes jump {
+    0% { bottom: 0; }
+    50% { bottom: 100px; }
+    100% { bottom: 0; }
+}
+/* Nút nhảy cho điện thoại */
+#jump-button {
+    display: none;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+/* Responsive cho điện thoại */
+@media (max-width: 600px) {
+    #game-container {
+        width: 100%;
+        height: 150px;
+    }
+    #player {
+        width: 60px;
+        height: 40px;
+    }
+    #obstacle {
+        width: 40px;
+        height: 50px;
+    }
+    #scoreboard {
+        font-size: 16px;
+    }
+    #jump-button {
+        display: block;
+    }
+}
+#game-over {
+    display: none; /* Ẩn mặc định */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#game-over button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
